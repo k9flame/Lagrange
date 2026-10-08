@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "channel": "official",
+    "channelName": "官服",
+    "source": "sample",
+    "capturedAt": "2026-10-08T12:00:00+08:00",
+    "protocolNote": "样例数据，用于 Demo 前端演示与解析器契约校验；真实数据由采集通道产出",
+    "completeness": {
+      "role": true,
+      "currencies": true,
+      "blueprints": true,
+      "points": true,
+      "modules": true
+    },
+    "missingFields": []
+  },
+  "role": {
+    "uid": "10000012345",
+    "nickname": "拾光者",
+    "level": 45,
+    "serverName": "001区·天狼星",
+    "unionName": "猫猫咖啡厅",
+    "power": 128500000,
+    "updatedAt": "2026-10-08T11:58:00+08:00"
+  },
+  "currencies": {
+    "metal": 12345678,
+    "crystal": 2345678,
+    "deuterium": 345678,
+    "commandPoints": 420,
+    "commandLimit": 500,
+    "blueprintPoints": 880
+  },
+  "blueprints": [
+    {
+      "id": "CAS066",
+      "name": "CAS066级-通用巡洋舰",
+      "alias": "066",
+      "shipClass": "巡洋舰",
+      "rarity": "罕见",
+      "subModel": "通用型",
+      "defaultPosition": "前排",
+      "owned": true,
+      "level": 5,
+      "locked": false,
+      "pointsAllocated": 91,
+      "pointsTotal": 129,
+      "modules": [
+        {
+          "slot": "M",
+          "name": "鱼雷发射管",
+          "unlocked": true
+        },
+        {
+          "slot": "A",
+          "name": "直射火炮",
+          "unlocked": true
+        }
+      ],
+      "skills": [
+        {
+          "system": "装甲系统",
+          "name": "血量强化",
+          "level": 6,
+          "max": 6
+        },
+        {
+          "system": "装甲系统",
+          "name": "物理护甲",
+          "level": 6,
+          "max": 6
+        },
+        {
+          "system": "武器系统M",
+          "name": "鱼雷伤害",
+          "level": 3,
+          "max": 3
+        },
+        {
+          "system": "武器系统M",
+          "name": "鱼雷冷却",
+          "level": 3,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "id": "CHIMERA_HP",
+      "name": "奇美拉级-重炮巡洋舰",
+      "alias": "重炮奇美拉",
+      "shipClass": "巡洋舰",
+      "rarity": "史诗",
+      "subModel": "重炮型",
+      "defaultPosition": "中排",
+      "owned": true,
+      "level": 4,
+      "locked": false,
+      "pointsAllocated": 72,
+      "pointsTotal": 129,
+      "modules": [
+        {
+          "slot": "M",
+          "name": "重型轨道炮",
+          "unlocked": true
+        },
+        {
+          "slot": "B",
+          "name": "防空炮",
+          "unlocked": false
+        }
+      ],
+      "skills": [
+        {
+          "system": "装甲系统",
+          "name": "血量强化",
+          "level": 5,
+          "max": 6
+        },
+        {
+          "system": "武器系统M",
+          "name": "轨道炮伤害",
+          "level": 4,
+          "max": 5
+        }
+      ]
+    },
+    {
+      "id": "CAS066F",
+      "name": "CAS066级-炮击巡洋舰",
+      "alias": "66炮",
+      "shipClass": "巡洋舰",
+      "rarity": "稀有",
+      "subModel": "炮击型",
+      "defaultPosition": "后排",
+      "owned": true,
+      "level": 3,
+      "locked": true,
+      "pointsAllocated": 40,
+      "pointsTotal": 129,
+      "modules": [
+        {
+          "slot": "M",
+          "name": "重型轨道炮",
+          "unlocked": true
+        }
+      ],
+      "skills": [
+        {
+          "system": "武器系统M",
+          "name": "主炮伤害",
+          "level": 3,
+          "max": 3
+        },
+        {
+          "system": "武器系统M",
+          "name": "主炮冷却",
+          "level": 2,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "id": "GUARD_KALI",
+      "name": "卡利斯托级-护卫舰",
+      "alias": "卡利",
+      "shipClass": "护卫舰",
+      "rarity": "普通",
+      "subModel": "基础型",
+      "defaultPosition": "前排",
+      "owned": false,
+      "level": 0,
+      "locked": false,
+      "pointsAllocated": 0,
+      "pointsTotal": 0,
+      "modules": [],
+      "skills": []
+    }
+  ]
+}

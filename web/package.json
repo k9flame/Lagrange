@@ -1,0 +1,23 @@
+{
+  "name": "lagrange-web-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "无尽的拉格朗日-星际猎人 · 数据获取可行性验证 Demo 前端（iOS 风格）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.7",
+    "vue-tsc": "^2.2.0"
+  }
+}

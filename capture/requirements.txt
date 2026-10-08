@@ -1,0 +1,13 @@
+# 数据获取可行性验证 Demo —— 采集工具链依赖
+# 仅使用 Python 标准库 + 以下两个第三方库（Python 3.14）
+#
+# 安装：
+#   python3 -m pip install -r requirements.txt
+#
+# 说明：
+#   - mitmproxy 仅用于本地真实抓包（用户在自己电脑上运行）。
+#     本仓库的 scan.py / parse.py 不依赖 mitmproxy，缺失时仍可正常运行。
+#   - PyYAML 用于读取 channels.yaml / mapping.yaml。
+
+mitmproxy
+PyYAML

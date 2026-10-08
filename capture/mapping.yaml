@@ -1,0 +1,96 @@
+# =============================================================================
+# 字段映射模板：把「游戏响应 JSON」的字段路径 映射到 「标准角色数据模型」
+# =============================================================================
+# 标准模型定义见 /workspace/shared/data-model.md
+# 本次输出必须符合该模型；本文件负责描述「源字段 -> 目标字段」的对应关系。
+#
+# !!! 重要 !!!
+#   下方所有取值默认留空（""），表示【待用户抓包确认】。
+#   真实字段名必须由用户抓包后用 scan.py 观察、再填入本文件。
+#   请勿把任何示例值当作真实字段。
+#
+# 路径语法：
+#   - 点路径：role.uid
+#   - 数组下标：fleet[0].id
+#   - 数组通配（展开为列表）：blueprints[].name
+#
+# 使用流程：
+#   1) scan.py 定位接口，观察其 JSON 顶层字段；
+#   2) 在本文件 endpoint 里写明接口 host/path（便于记录与校验）；
+#   3) 在 map / blueprints 里填写字段路径；
+#   4) python3 parse.py --input <response.json> --mapping mapping.yaml \
+#        --channel official --out character.json --validate
+# =============================================================================
+
+# 指定承载角色数据的接口（抓包后填写；仅作记录/校验，parse 不会据此联网）
+endpoint:
+  hostPattern: ""     # 待抓包确认，例如 "待确认-域名"
+  pathPattern: ""     # 待抓包确认，例如 "待确认-路径"
+  method: ""          # 待抓包确认，例如 GET / POST
+
+# ---------------------------------------------------------------------------
+# 固定字段映射（标量）
+#   左侧 = 标准模型路径（不要改），右侧 = 游戏响应中的字段路径（待填）
+# ---------------------------------------------------------------------------
+map:
+  # ---- meta（通常由工具自动生成，一般无需映射）----
+  # 若响应里自带渠道/服务器等，可选映射：
+  # meta.channel: ""
+  # meta.channelName: ""
+
+  # ---- role（角色信息）----
+  role.uid: ""
+  role.nickname: ""
+  role.level: ""
+  role.serverName: ""
+  role.unionName: ""
+  role.power: ""
+  role.updatedAt: ""
+
+  # ---- currencies（资源与指挥值）----
+  currencies.metal: ""
+  currencies.crystal: ""
+  currencies.deuterium: ""
+  currencies.commandPoints: ""
+  currencies.commandLimit: ""
+  currencies.blueprintPoints: ""
+
+# ---------------------------------------------------------------------------
+# 蓝图（blueprints）数组
+#   root  : 蓝图数组在响应中的路径（如 data.blueprints）
+#   fields: 单条蓝图对象内 目标字段 -> 源字段路径（相对单条对象，也支持子路径）
+# ---------------------------------------------------------------------------
+blueprints:
+  root: ""            # 待抓包确认：蓝图数组所在路径
+  fields:
+    id: ""
+    name: ""
+    alias: ""
+    shipClass: ""
+    rarity: ""
+    subModel: ""
+    defaultPosition: ""
+    owned: ""
+    level: ""
+    locked: ""
+    pointsAllocated: ""
+    pointsTotal: ""
+    # 模块数组（嵌套）：modules 元素内字段路径（相对模块对象）
+    # 若响应中模块字段是逗号分隔字符串等，请抓包确认后再决定是否二次处理
+    modules.root: ""        # 模块数组路径（相对蓝图对象，如 modules）
+    modules.fields.slot: ""
+    modules.fields.name: ""
+    modules.fields.unlocked: ""
+    # 技能数组（嵌套）：skills 元素内字段路径（相对技能对象）
+    skills.root: ""         # 技能数组路径（相对蓝图对象，如 skills）
+    skills.fields.system: ""
+    skills.fields.name: ""
+    skills.fields.level: ""
+    skills.fields.max: ""
+
+# ---------------------------------------------------------------------------
+# 缺省值 / 类型说明（供 parse.py 参考，一般无需修改）
+#   数值类字段缺失时输出 0；字符串类缺失时输出 ""；
+#   数组缺失时输出 []；同时把缺失键写入 meta.missingFields，
+#   并把对应 meta.completeness 分组置为 false。
+# ---------------------------------------------------------------------------

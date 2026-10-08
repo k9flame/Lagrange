@@ -1,0 +1,122 @@
+/* =========================================================================
+   设计令牌（Design Tokens）—— iOS Human Interface 风格
+   支持：跟随系统深浅色 + 手动切换（html[data-theme]）
+   ========================================================================= */
+
+:root {
+  /* ---- 系统色板（浅色） ---- */
+  --ios-blue: #007aff;
+  --ios-green: #34c759;
+  --ios-indigo: #5856d6;
+  --ios-orange: #ff9500;
+  --ios-pink: #ff2d55;
+  --ios-purple: #af52de;
+  --ios-red: #ff3b30;
+  --ios-teal: #30b0c7;
+  --ios-yellow: #ffcc00;
+  --ios-gray: #8e8e93;
+
+  /* ---- 语义化颜色（浅色） ---- */
+  --bg-grouped: #f2f2f7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f7f7fa;
+  --bg-elevated: #ffffff;
+  --bg-field: rgba(118, 118, 128, 0.12);
+  --bg-navbar: rgba(249, 249, 249, 0.72);
+  --bg-tabbar: rgba(249, 249, 249, 0.72);
+  --bg-fill: rgba(120, 120, 128, 0.12);
+  --bg-fill-strong: rgba(120, 120, 128, 0.2);
+
+  --separator: rgba(60, 60, 67, 0.18);
+  --separator-opaque: #c6c6c8;
+
+  --label: #000000;
+  --label-secondary: rgba(60, 60, 67, 0.6);
+  --label-tertiary: rgba(60, 60, 67, 0.3);
+
+  --tint: var(--ios-blue);
+  --tint-soft: rgba(0, 122, 255, 0.12);
+  --tint-on: #ffffff;
+
+  --danger: var(--ios-red);
+  --success: var(--ios-green);
+  --warning: var(--ios-orange);
+
+  /* ---- 圆角（squircle 近似） ---- */
+  --r-xs: 8px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-card: 18px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- 阴影 ---- */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(0, 0, 0, 0.05);
+  --shadow-raised: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-device: 0 40px 80px -20px rgba(0, 0, 0, 0.45), 0 12px 30px rgba(0, 0, 0, 0.2);
+
+  /* ---- 动效曲线 ---- */
+  --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- 字体 ---- */
+  --font-stack: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', Inter,
+    system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+
+  /* ---- 布局 ---- */
+  --frame-w: 402px;
+  --frame-h: 874px;
+  --content-max: 720px;
+
+  color-scheme: light;
+}
+
+/* ---- 深色令牌 ---- */
+:root[data-theme='dark'] {
+  --bg-grouped: #000000;
+  --bg-card: #1c1c1e;
+  --bg-card-hover: #2c2c2e;
+  --bg-elevated: #2c2c2e;
+  --bg-field: rgba(118, 118, 128, 0.24);
+  --bg-navbar: rgba(22, 22, 24, 0.7);
+  --bg-tabbar: rgba(22, 22, 24, 0.7);
+  --bg-fill: rgba(120, 120, 128, 0.24);
+  --bg-fill-strong: rgba(120, 120, 128, 0.36);
+
+  --separator: rgba(84, 84, 88, 0.6);
+  --separator-opaque: #38383a;
+
+  --label: #ffffff;
+  --label-secondary: rgba(235, 235, 245, 0.62);
+  --label-tertiary: rgba(235, 235, 245, 0.34);
+
+  --tint: #0a84ff;
+  --tint-soft: rgba(10, 132, 255, 0.22);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 22px rgba(0, 0, 0, 0.35);
+  --shadow-raised: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
+}
+
+/* ---- 桌面端环境背景 ---- */
+.env-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1100px 700px at 12% -8%, rgba(0, 122, 255, 0.18), transparent 60%),
+    radial-gradient(900px 620px at 92% 6%, rgba(175, 82, 222, 0.16), transparent 58%),
+    radial-gradient(1000px 800px at 60% 108%, rgba(48, 176, 199, 0.14), transparent 60%),
+    var(--bg-grouped);
+  transition: background 0.4s var(--ease-ios);
+}
+:root[data-theme='dark'] .env-bg {
+  background:
+    radial-gradient(1100px 700px at 12% -8%, rgba(10, 132, 255, 0.22), transparent 60%),
+    radial-gradient(900px 620px at 92% 6%, rgba(175, 82, 222, 0.18), transparent 58%),
+    radial-gradient(1000px 800px at 60% 108%, rgba(48, 176, 199, 0.16), transparent 60%),
+    #000000;
+}

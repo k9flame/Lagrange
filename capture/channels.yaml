@@ -1,0 +1,64 @@
+# =============================================================================
+# 渠道配置（官服 / B服 以及后续可扩展的其他渠道）
+# =============================================================================
+# 用途：
+#   1) 供 mitmproxy_addon.py 读取「域名 / 路径」匹配规则，用于筛选需要落盘的流量；
+#   2) 供 parse.py 通过 --channel 解析出 meta.channel / meta.channelName。
+#
+# !!! 重要 !!!
+#   本文件中的 hostPatterns / pathKeywords 默认全部留空，属于【占位】。
+#   真实游戏 API 域名与接口路径必须由【用户自行抓包后确认】，
+#   本项目不会、也无法预先提供任何真实域名/路径（沙箱内访问不到游戏服务器）。
+#   在确认之前请勿相信任何写死的域名。
+#
+# 填写方法（抓包后）：
+#   1) 先用 mitmproxy_addon.py 做一次「全量抓包」（规则为空时脚本会记录全部流量）；
+#   2) 运行 `python3 scan.py --grep 关键字` 观察流量；
+#   3) 把承载角色/蓝图数据的接口域名关键词填入对应渠道的 hostPatterns，
+#      把接口路径关键词填入 pathKeywords（子串匹配，大小写不敏感）；
+#   4) 重新抓包，只有命中规则的流量会被标记 matched=true。
+#
+# 匹配语义：
+#   - hostPatterns：host 的子串（大小写不敏感），例如 "example.com"（占位，待确认）。
+#   - pathKeywords：URL path 的子串（大小写不敏感），例如 "role"（占位，待确认）。
+#   - 任一渠道命中即视为命中；命中的流量会记录其归属渠道。
+#   - 若所有渠道规则均为空，addon 记录全部流量（便于先全量抓一遍再筛选）。
+# =============================================================================
+
+channels:
+  # ---------------- 官服（网易账号体系） ----------------
+  official:
+    displayName: 官服
+    # 待用户抓包确认：以下为占位匹配规则，抓包后填入实际域名/路径关键字
+    hostPatterns: []
+    #   - "待确认-官服API域名"      # 示例格式，请替换为真实值
+    pathKeywords: []
+    #   - "待确认-角色接口路径"    # 示例格式，请替换为真实值
+    # 可选：排除某些噪音接口（子串匹配）
+    excludeHostPatterns: []
+    excludePathKeywords: []
+    # 可选：优先关注的响应 content-type（子串匹配），用于 scan.py 提示
+    focusContentTypes: []
+    #   - "application/json"
+    loginNotes: "网易账号体系，待抓包确认登录域名与 token 形态"
+
+  # ---------------- B服（哔哩哔哩账号体系） ----------------
+  bili:
+    displayName: B服
+    # 待用户抓包确认：以下为占位匹配规则，抓包后填入实际域名/路径关键字
+    hostPatterns: []
+    pathKeywords: []
+    excludeHostPatterns: []
+    excludePathKeywords: []
+    focusContentTypes: []
+    loginNotes: "B站(哔哩哔哩)账号体系，待抓包确认"
+
+# 后续可扩展其他渠道：直接按上面的结构新增一个 key 即可，
+# parse.py --channel <key> 会自动解析出对应的 displayName。
+#
+# 示例（占位，勿直接使用）：
+#   huawei:
+#     displayName: 华为渠道服
+#     hostPatterns: []
+#     pathKeywords: []
+#     loginNotes: "待抓包确认"
